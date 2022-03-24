@@ -20,7 +20,7 @@ public class Move : MonoBehaviour
     void Start() {
         PlayerPrefs.SetInt("Health", health);
     }
-
+    // управление кораблем + при нажатии "space" вызвать метод "стрельба".
     void Update()
     {
         rb.AddForce(new Vector2(Input.GetAxis("Horizontal")*speed,0));
@@ -31,7 +31,7 @@ public class Move : MonoBehaviour
 
         delay++;
     }
-
+    // метод описывает действия при столкновении с снарядом врага "получение урона".
     public void Damage(){
         health--;
         PlayerPrefs.SetInt("Health", health);
@@ -41,19 +41,19 @@ public class Move : MonoBehaviour
             Destroy(gameObject, 0.1f);
         }
     }
-
+    // обновление спрайта здоровья.
     IEnumerator Blink() {
         GetComponent<SpriteRenderer>().color=new Color(1,0,0);
         yield return new WaitForSeconds(0.1f);
         GetComponent<SpriteRenderer>().color=new Color(1,1,1);
     }
-
+    // метод спавна пуль "выстрелы".
     void Shoot(){
         delay=0;
         Instantiate(bullet,a.transform.position, Quaternion.identity);
         Instantiate(bullet,b.transform.position, Quaternion.identity);
     }
-
+    // метод получение здоровья при подборе "аптечек".
     public void AddHealth() {
         health++;
         PlayerPrefs.SetInt("Health", health);

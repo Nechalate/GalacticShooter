@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class KillZone : MonoBehaviour
 {
-void OnTriggerEnter2D(Collider2D col) {
-    Destroy(col.gameObject);
-}
+    // вражеские снаряды при столкновении с коллизией за границами сцены уничтожаются чтобы повысить производительность игры.
+    void OnTriggerEnter2D(Collider2D col) {
+        Destroy(col.gameObject);
+    }
 }
